@@ -15,6 +15,9 @@ public class Introduction {
         this.description = description;
     }
 
+    public Introduction() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {

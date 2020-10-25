@@ -10,6 +10,10 @@ public class Feature {
     private String description;
     private String icon;
 
+    public Feature(){
+
+    }
+    
     public Feature(long id, String title, String description, String icon) {
         this.id = id;
         this.title = title;
@@ -36,7 +40,7 @@ public class Feature {
         this.title = title;
     }
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = 1500)
     public String getDescription() {
         return description;
     }

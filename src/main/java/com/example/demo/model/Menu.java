@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +10,9 @@ public class Menu {
     private String name;
     private String title;
     private String description;
+
+    public Menu() {
+    }
 
     public Menu(String name, String title, String description) {
         this.name = name;
@@ -43,8 +47,7 @@ public class Menu {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    @Column(name = "description")
+    @Column(name = "description", length = 1500)
     public String getDescription() {
         return description;
     }

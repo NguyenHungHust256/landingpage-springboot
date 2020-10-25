@@ -1,15 +1,19 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "reviews")
 public class Review {
     private long id;
-    private long employeeId;
+    private UUID employeeId;
     private String description;
 
-    public Review(long id, long employeeId, String description) {
+    public Review() {
+    }
+
+    public Review(long id, UUID employeeId, String description) {
         this.id = id;
         this.employeeId = employeeId;
         this.description = description;
@@ -26,11 +30,11 @@ public class Review {
     }
 
     @Column(name = "employee_id", nullable = false)
-    public long getEmployeeId() {
+    public UUID getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(long employeeId) {
+    public void setEmployeeId(UUID employeeId) {
         this.employeeId = employeeId;
     }
 
