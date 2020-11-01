@@ -17,7 +17,6 @@ public class FeatureController {
     @Autowired
     private FeatureService featureService;
 
-    @RolesAllowed("admin")
     @GetMapping(value = "/features")
     public List<Feature> getFeatures() {
         return featureService.getFeatures();

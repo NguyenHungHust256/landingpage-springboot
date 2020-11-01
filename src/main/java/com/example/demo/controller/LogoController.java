@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Logo;
 import com.example.demo.repository.LogoRepository;
+import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,12 +17,13 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class LogoController {
+
     @Autowired
     private LogoRepository logoRepository;
 
     @RolesAllowed("admin")
     @GetMapping("/admin/logos")
-    public List<Logo> getLogos(@RequestHeader String Authorization) {
+    public List<Logo> getLogos() {
         return logoRepository.findAll();
     }
 
@@ -45,11 +47,11 @@ public class LogoController {
 
     @RolesAllowed("admin")
     @PutMapping("admin/logos/{id}")
-    public ResponseEntity<Logo> updateLogo(@PathVariable(value = "id") Long logoId,
-                                                   @Validated @RequestBody Logo logoDetail) throws ResourceNotFoundException {
+    public ResponseEntity<Logo> updateEmployee(@PathVariable(value = "id") Long logoId,
+                                                   @Validated @RequestBody Logo employeeDetails) throws ResourceNotFoundException {
         Logo logo = logoRepository.findById(logoId).orElseThrow(
                 () -> new ResourceNotFoundException("Logo not found for this id : " + logoId));
-        logo.setText(logoDetail.getText());
+        logo.setText(employeeDetails.getText());
         final Logo updatedLogo = logoRepository.save(logo);
         return ResponseEntity.ok(updatedLogo);
     }
